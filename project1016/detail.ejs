@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=button] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=button]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+</style>
+<script>
+    $(function(){
+        $($("input[type='button']")[0]).on("click",function(){ //$("input[type='button']")[0] 를 한번더 감싸야 onclick 이먹는다 배열이기때문에
+            location.href = "list.html";
+        });
+
+        $($("input[type='button']")[1]).on("click",function(){ //$("input[type='button']")[0] 를 한번더 감싸야 onclick 이먹는다 배열이기때문에
+            
+        if(confirm("수정?")){
+              $("form").attr({
+                action:"/notice/edit",
+                method:"post"
+              });
+
+              $("form").submit();
+        
+            }
+
+        });
+
+        $($("input[type='button']")[2]).on("click",function(){
+          if(confirm("삭제?")){
+            $("form").attr({
+              method:"post",
+              action:"/notice/del"
+            });
+            $("form").submit();
+          }
+
+        });
+
+
+    });
+
+
+
+
+</script>
+</head>
+<body>
+
+<h3>Contact Form</h3>
+
+<div class="container">
+  <form>
+    <input type="text" name="notice_id" value="<%=notice[0].notice_id%>" hidden>
+    <label for="Title">Title</label>
+    <input type="text" id="Title" name="Title" placeholder="Your name.." value="<%=notice[0].title%>">
+
+    <label for="Writer">Writer</label>
+    <input type="text" id="Writer" name="Writer" placeholder="Your last name.." value="<%=notice[0].writer%>">
+
+    <label for="content">content</label>
+    <textarea id="content" name="content" placeholder="Write something.." style="height:200px"><%=notice[0].content%>
+    </textarea>
+
+    <input type="button" value="목록으로">
+    <input type="button" value="수정하기">
+    <input type="button" value="삭제하기">
+  </form>
+</div>
+
+</body>
+</html>

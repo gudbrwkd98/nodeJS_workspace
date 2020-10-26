@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
+    <style>
+        table{
+            border : 1px solid orange;
+            width: 700px;
+             
+        }
+        body{
+            font-size: 12px;
+            font-family:"굴림체";
+        }
+
+        .phoneno{
+            width: 10%;
+        }
+        form input,select,td{
+            padding: 0;
+            height: 30px;
+            position: relative;
+            left: 0;
+            outline: none;
+            border: 1px solid #cdcdcd;
+            border-color: rgba(0, 0, 0, .15);
+            background-color: white;
+            font-size: 16px;
+        }
+
+        form button{
+            background-color: chartreuse;
+            border: none;
+        }
+
+        form button:hover{
+            background-color: rgb(82, 153, 12);
+        }
+    </style>
+
+    <script>
+        //문서내의 모든~~~ DOM 메모리에 올라오면..    
+        $(function(){
+            CKEDITOR.replace('m_memo'); //GUI편집기로 대체해버림..
+
+            $($("button")[0]).click(function(){
+                location.href = "loginForm.html";
+            });
+
+            $($("button")[1]).click(function(){
+                $("form").attr({
+                    action:"/member/regist",
+                    method:"get"
+                });
+
+                $("form").submit();
+            });
+
+
+        });
+
+
+    </script>
+</head>
+<body>
+    <form>
+        <table align="center">
+            <tr>
+                <td>아이디</td>
+                <td><input type="text" name="m_id"></td>
+            </tr>
+
+            <tr>
+                <td>패스워드</td>
+                <td><input type="password" name="m_pass" maxlength="8"></td>
+            </tr>
+
+            <tr>
+                <td>이름</td>
+                <td><input type="text" name="m_name"></td>
+            </tr>
+
+            <tr>
+                <td>핸드폰</td>
+                <td><select name="phone" class="phoneno">
+                    <option value="010">010</option>
+                    <option value="011">011</option>
+                </select> - <input type="text" name="m_cpnumber1" class="phoneno">- <input type="text" name="m_cpnumber2" class="phoneno"></td>
+            </tr>
+
+            <tr>
+                <td>이메일</td>
+                <td><input type="text" name="m_email">@
+                    <select name="m_emailadd" >
+                        <option value="gmail.com">gmail.com</option>
+                        <option value="naver.com">naver.com</option>
+                        <option value="yahoo.com">yahoo</option>
+                        <option value="daum.com">daum</option>
+                        <option value="0">직접입력</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>이메일 수신</td>
+                <td>예<input type="radio" name="chk_info" value="예">
+                        아니오<input type="radio" name="chk_info" value="아니오">
+                        (마케팅 정보 수신에 동의)
+                </td>
+            </tr>
+
+            <tr>
+                <td>주소</td>
+                <td><input type="text" name="m_address"></td>
+            </tr>
+
+            <tr>
+                <td>가입인사</td>
+                <td><textarea name="m_memo" id ="editor" rows="10" cols="60"></textarea></td>
+            </tr>
+
+            
+            <tr>
+                <td>보유기술</td>
+                <td>java<input type="checkbox" value="1">
+                    oracle<input type="checkbox" value="2">
+                    android<input type="checkbox" value="3">
+                    python<input type="checkbox" value="4">
+                    swift<input type="checkbox" value="5">
+                    R<input type="checkbox" value="6">
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" align="center">
+                    <button type="button">로그인</button>
+                    <button type="button">가입</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+ 
+</html>

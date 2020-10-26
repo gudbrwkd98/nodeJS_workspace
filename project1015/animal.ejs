@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+function getSubList(obj){
+    // var sel = document.getElementsByName("select1")[0];
+
+    location.href = "/animal?category_id="+obj.value;
+
+}
+
+
+</script>
+<body>
+    <select name="select1" id="select1" onChange="getSubList(this)" >
+        <option value="">동물구분</option>
+        <% for(var i = 0 ; i < categoryArray.length; i++){ %>
+            <% var category =  categoryArray[i] %>
+            <option <%if(category_id==category.category_id){%>selected<%}%> value="<%=category.category_id %>"><%=category.category_name %></option>
+        <%} %>
+    </select>
+
+    <select name="select2" id="select2"  >
+        <option value="">동물이름</option>
+        <%for(var i = 0 ; i <animalArray.length; i++){%>
+        <%var animal = animalArray[i];%>
+        <option value="<%=animal.animal_id%>"><%=animal.name%></option>
+        <%}%>
+    </select>
+</body>
+</html>
+
+
+<!-- $(function(){
+    let $select1 = $( '#select1' ),
+		$select2 = $( '#select2' ),
+    $options = $select2.find( 'option' );
+    
+$select1.on( 'change', function() {
+	$select2.html( $options.filter( '[data-dep="' + this.value + '"]' ) );
+} ).trigger( 'change' );
+}); -->
+
+<!-- $(function(){
+    $("#select1").change(function(){
+        var deptid = $(this).val();
+
+        $.ajax({
+            url: '/category',
+            type: 'get',
+            data: {category:deptid},
+            dataType: 'json',
+            success: function(result) {
+                          if (result) {
+                            alert(result);
+                        }
+                    }
+        });
+    });
+}); -->
